@@ -25,34 +25,11 @@ package("g++") { action :install }
 package("unzip") { action :install }
 
 
-execute "git protobuf" do
+execute "install protobuf" do
   cwd "#{node['source_root']}"
-  command "git clone -b #{node['protobuf_repo_branch']} #{node['protobuf_repo']}"
-  user node['username']
-  group node["username"]
-  creates "#{node['source_root']}/protobuf"
+  command "curl -L -o protoc.zip https://github.com/google/protobuf/releases/download/v3.6.0/protoc-3.6.0-linux-x86_64.zip &&" \
+      "unzip -o protoc.zip &&" \
+      "mv #{node['source_root']}/bin/protoc /usr/local/bin"
+  creates "/usr/local/bin/protoc"
   action :run
-end
-
-execute "build and install protobuf" do
-  cwd "#{node['source_root']}/protobuf"
-  command "autoreconf && " \
-          "./configure && " \
-          "make && " \
-          "sudo make install && " \
-          "sudo ldconfig"
-  if not node['full_reprovision']
-    creates "/usr/local/bin/protoc"
-  end
-  # avoid /opt/chef/embedded/bin - related to chef/chef-dk#313
-  # environment 'PATH' => "/usr/bin:#{ENV['PATH']}"
-  action :run
-end
-
-execute "go get protoc-gen-go" do
-  command "go get -u github.com/golang/protobuf/protoc-gen-go"
-  environment({"GOPATH": "/vagrant/go"})
-  if not node['full_reprovision']
-    creates "/vagrant/go/src/github.com/golang/protobuf"
-  end
 end

@@ -7,10 +7,12 @@ swift_hash_path_suffix = changeme
 [storage-policy:<%= i %>]
 name = <%= name %>
 <% if i == 0 %>
+diskfile = replication.kv
 default = yes
 <% end %>
 <% if name == @ec_policy %>
 policy_type = erasure_coding
+diskfile = erasure_coding.kv
 ec_type = <%= @ec_type %>
 ec_num_data_fragments = <%= @ec_replicas - @ec_parity %>
 ec_num_parity_fragments = <%= @ec_parity %>

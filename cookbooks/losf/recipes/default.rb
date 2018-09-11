@@ -16,3 +16,4 @@
 include_recipe "losf::leveldb"
 include_recipe "losf::protobuf"
 include_recipe "losf::levigo"
+include_recipe "losf::swift-rpc-losf"

@@ -24,3 +24,7 @@ use = egg:swift#recon
 sync_method = <%= @sync_method %>
 
 [object-reconstructor]
+
+[object-rpc-manager]
+volcheck=/usr/local/bin/swift-losf-volume-check
+losf_bin=/vagrant/go/bin/swift-rpc-losf
