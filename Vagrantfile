@@ -19,7 +19,7 @@
 
 require 'ipaddr'
 
-DEFAULT_BOX = "xenial"
+DEFAULT_BOX = "bionic"
 
 # Note: 18.04/bionic requires Vagrant 2.02 or newer because 18.04 ships without ifup/ifdown by default.
 vagrant_boxes = {
@@ -55,8 +55,8 @@ local_config = {
   "full_reprovision" => (ENV['FULL_REPROVISION'] || 'false').downcase == 'true',
   "loopback_gb" => Integer(ENV['LOOPBACK_GB'] || 4),
   "extra_packages" => (ENV['EXTRA_PACKAGES'] || '').split(','),
-  "storage_policies" => (ENV['STORAGE_POLICIES'] || 'default').split(','),
-  "ec_policy" => (ENV['EC_POLICY'] || ''),
+  "storage_policies" => (ENV['STORAGE_POLICIES'] || 'gold,silver').split(','),
+  "ec_policy" => (ENV['EC_POLICY'] || 'silver'),
   "servers_per_port" => Integer(ENV['SERVERS_PER_PORT'] || 0),
   "object_sync_method" => (ENV['OBJECT_SYNC_METHOD'] || 'rsync'),
   "post_as_copy" => (ENV['POST_AS_COPY'] || 'true').downcase == 'true',
@@ -80,8 +80,8 @@ local_config = {
   "snappy_repo_branch" => (ENV['SNAPPY_REPO_BRANCH'] || '1.1.7'),
   "leveldb_repo" => (ENV['LEVELDB_REPO'] || 'https://github.com/google/leveldb.git'),
   "leveldb_repo_branch" => (ENV['LEVELDB_REPO_BRANCH'] || 'master'),
-  "swift_repo" => (ENV['SWIFT_REPO'] || 'git://github.com/openstack/swift.git'),
-  "swift_repo_branch" => (ENV['SWIFT_REPO_BRANCH'] || 'master'),
+  "swift_repo" => (ENV['SWIFT_REPO'] || 'git://github.com/alecuyer/swift.git'),
+  "swift_repo_branch" => (ENV['SWIFT_REPO_BRANCH'] || 'v2.18.0-losf'),
   "swiftclient_repo" => (ENV['SWIFTCLIENT_REPO'] || 'git://github.com/openstack/python-swiftclient.git'),
   "swiftclient_repo_branch" => (ENV['SWIFTCLIENT_REPO_BRANCH'] || 'master'),
   "swift_bench_repo" => (ENV['SWIFTBENCH_REPO'] || 'git://github.com/openstack/swift-bench.git'),

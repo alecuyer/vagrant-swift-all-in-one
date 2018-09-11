@@ -3,6 +3,9 @@ vagrant-swift-all-in-one
 
 A Swift-All-In-One in a few easy steps.
 
+This is the LOSF specific version, which will setup policies to use LOSF.
+See /etc/swift/swift.conf
+
  1. `vagrant up`
  1. `vagrant ssh`
  1. `echo "awesome" > test`
