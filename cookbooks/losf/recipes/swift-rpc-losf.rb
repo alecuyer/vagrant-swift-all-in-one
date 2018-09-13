@@ -1,4 +1,5 @@
 include_recipe "losf::gopath"
+include_recipe "losf::statsd"
 include_recipe "losf::leveldb"
 
 execute "symlink go code" do
